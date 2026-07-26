@@ -444,34 +444,80 @@ const saveBtn =
 document.querySelector(".save-btn");
 
 
-
 saveBtn.addEventListener("click",()=>{
 
 
 html2canvas(document.getElementById("poster"),{
 
+    scale:3,
 
-scale:3,
+    useCORS:true,
 
-useCORS:true,
-
-backgroundColor:null
-
+    backgroundColor:null
 
 }).then(canvas=>{
 
 
-const link=document.createElement("a");
+canvas.toBlob(async(blob)=>{
 
 
-link.download="JOYVERSE.png";
+    const file = new File(
+
+        [blob],
+
+        "JOYVERSE.png",
+
+        {
+            type:"image/png"
+        }
+
+    );
 
 
-link.href=canvas.toDataURL("image/png");
+    // 手机直接调用系统保存
+
+    if(
+        navigator.canShare &&
+        navigator.canShare({
+            files:[file]
+        })
+    ){
 
 
-link.click();
+        await navigator.share({
 
+            files:[file],
+
+            title:"JOYVERSE"
+
+        });
+
+
+    }
+
+
+    // 电脑备用下载
+
+    else{
+
+
+        const link=document.createElement("a");
+
+
+        link.download="JOYVERSE.png";
+
+
+        link.href=
+        URL.createObjectURL(blob);
+
+
+        link.click();
+
+
+    }
+
+
+});
 
 
 });
