@@ -1,0 +1,1146 @@
+/* ==========================================
+   JOYVERSE APP
+   FINAL v1.0
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+}
+
+body{
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at top,#2b211d 0%,#171412 100%);
+
+    color:#F4E8D7;
+
+    font-family:
+
+    Georgia,
+
+    "Times New Roman",
+
+    serif;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/* ==========================
+Background
+========================== */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+opacity:.06;
+
+background-image:
+
+radial-gradient(circle,
+rgba(255,255,255,.22) 1px,
+transparent 1px);
+
+background-size:10px 10px;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+box-shadow:
+
+inset 0 0 180px rgba(0,0,0,.45);
+
+}
+
+/* ==========================
+Container
+========================== */
+
+.container{
+
+width:100%;
+
+max-width:393px;
+
+height:852px;
+
+padding:
+
+54px
+28px
+46px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+position:relative;
+
+z-index:2;
+
+}
+
+/* ==========================
+Logo
+========================== */
+
+.logo{
+
+font-size:54px;
+
+font-weight:normal;
+
+letter-spacing:6px;
+
+line-height:1;
+
+margin-bottom:16px;
+
+}
+
+/* ==========================
+Subtitle
+========================== */
+
+.subtitle{
+
+width:88%;
+
+font-size:20px;
+
+line-height:1.75;
+
+color:#D7C8B2;
+
+margin-bottom:26px;
+
+}
+
+/* ==========================
+Divider
+========================== */
+
+.line{
+
+width:180px;
+
+height:1px;
+
+background:#8d714d;
+
+opacity:.75;
+
+margin:22px 0;
+
+}
+
+/* ==========================
+Bottom
+========================== */
+
+.bottom-text{
+
+width:88%;
+
+font-size:20px;
+
+line-height:1.7;
+
+color:#D7C8B2;
+
+margin-top:26px;
+
+}/* ==========================================
+   BOOK COMPONENT
+========================================== */
+
+.book{
+
+    width:230px;
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:0;
+
+    cursor:pointer;
+
+    perspective:1800px;
+
+    animation:bookFloat 5s ease-in-out infinite;
+
+}
+
+/* ==========================
+Shadow
+========================== */
+
+.book-shadow{
+
+    position:absolute;
+
+    bottom:-18px;
+
+    width:84%;
+    height:22px;
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.32);
+
+    filter:blur(16px);
+
+    transition:.5s ease;
+
+}
+
+/* ==========================
+Cover
+========================== */
+
+.cover{
+
+    width:100%;
+
+    transform-origin:left center;
+
+    transition:
+
+    transform .55s ease,
+
+    filter .55s ease;
+
+}
+
+.cover-image{
+
+    width:100%;
+
+    height:auto;
+
+    display:block;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+    filter:
+
+    drop-shadow(0 16px 28px rgba(0,0,0,.32));
+
+}
+
+/* ==========================
+Float
+========================== */
+
+@keyframes bookFloat{
+
+0%{
+
+transform:
+translateY(0px);
+
+}
+
+50%{
+
+transform:
+translateY(-8px);
+
+}
+
+100%{
+
+transform:
+translateY(0px);
+
+}
+
+}/* ==========================================
+   BOOK INTERACTION
+========================================== */
+
+/* Hover */
+
+.book:hover{
+
+    transform:
+    translateY(-6px);
+
+}
+
+.book:hover .cover{
+
+    transform:
+
+    rotateY(-8deg)
+
+    scale(1.015);
+
+}
+
+.book:hover .cover-image{
+
+    filter:
+
+    brightness(1.05)
+
+    drop-shadow(0 22px 38px rgba(0,0,0,.36))
+
+    drop-shadow(0 0 18px rgba(214,176,108,.18));
+
+}
+
+.book:hover .book-shadow{
+
+    transform:scale(1.08);
+
+    opacity:.55;
+
+}
+
+/* Click */
+
+.book:active{
+
+    transform:
+
+    scale(.98);
+
+}
+
+/* Smooth */
+
+.book,
+.cover,
+.cover-image,
+.book-shadow{
+
+    transition:
+
+    transform .45s ease,
+    filter .45s ease,
+    opacity .45s ease;
+
+}/* ==========================================
+   BOOK POSITION
+========================================== */
+
+.book{
+
+    flex-shrink:0;
+
+}
+
+.line:first-of-type{
+
+    margin-bottom:28px;
+
+}
+
+.line:last-of-type{
+
+    margin-top:34px;
+
+}
+
+.bottom-text{
+
+    margin-top:0;
+
+}/* ==========================================
+   OPENING EFFECT
+========================================== */
+
+.book.opening{
+
+    animation:none;
+
+    transform:
+
+    translateY(-16px)
+
+    scale(1.05);
+
+}
+
+/* 封面微打开 */
+
+.book.opening .cover{
+
+    transform:
+
+    rotateY(-18deg);
+
+}
+
+/* 金色光 */
+
+.book.opening .cover-image{
+
+    filter:
+
+    brightness(1.12)
+
+    drop-shadow(0 0 28px rgba(255,215,140,.35))
+
+    drop-shadow(0 32px 52px rgba(0,0,0,.45));
+
+}
+
+/* 阴影扩大 */
+
+.book.opening .book-shadow{
+
+    transform:scale(1.15);
+
+    opacity:.65;
+
+}
+
+/* ==========================================
+   Fade
+========================================== */
+
+body.fade-out{
+
+    animation:
+
+    fadeOut .9s ease forwards;
+
+}
+
+@keyframes fadeOut{
+
+0%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+}
+
+}/* ==========================================
+EDITOR
+========================================== */
+
+.editor{
+
+    width:100%;
+
+}
+
+.editor-title{
+
+    font-size:16px;
+
+    color:#D6C7B1;
+
+    margin:
+
+    22px
+    0
+    14px;
+
+}
+
+.background-list,
+.language-list{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+.bg-item,
+.lang-item{
+
+    border:none;
+
+    padding:
+
+    10px
+    18px;
+
+    border-radius:999px;
+
+    background:
+
+    rgba(255,255,255,.06);
+
+    color:#D8CCB8;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+.bg-item:hover,
+.lang-item:hover{
+
+    background:
+
+    rgba(255,255,255,.12);
+
+}
+
+.bg-item.active,
+.lang-item.active{
+
+    background:#D7B27A;
+
+    color:#2B211D;
+
+}/* ==========================================
+   SHARE PAGE UPDATE
+   v1.1
+========================================== */
+
+
+/* ==========================
+Editor spacing
+========================== */
+
+.editor{
+
+    margin-bottom:40px;
+
+}
+
+
+/* ==========================
+Poster
+========================== */
+
+
+.preview{
+
+    width:100%;
+
+    max-width:330px;
+
+    height:650px;
+
+    border-radius:40px;
+
+    padding:50px 30px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:#F7F1E3;
+
+    color:#3B3129;
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,.25);
+
+    transition:.5s ease;
+
+}
+
+
+/* ==========================
+Photo mode
+========================== */
+
+
+.preview.photo-mode::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    rgba(0,0,0,.35);
+
+}
+
+
+.preview.photo-mode>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.preview.photo-mode .share-answer,
+.preview.photo-mode .share-meaning,
+.preview.photo-mode .share-date,
+.preview.photo-mode .share-logo{
+
+
+    color:white;
+
+
+    text-shadow:
+
+    0 3px 12px rgba(0,0,0,.55);
+
+}
+
+
+
+/* ==========================
+Date
+========================== */
+
+
+.share-date{
+
+    font-size:18px;
+
+    color:#8B7050;
+
+    letter-spacing:2px;
+
+}
+
+
+
+/* ==========================
+Answer
+========================== */
+
+
+.share-answer{
+
+    font-size:34px;
+
+    line-height:1.55;
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================
+Meaning
+========================== */
+
+
+.share-meaning{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    color:#80664C;
+
+}
+
+
+
+/* ==========================
+Logo
+========================== */
+
+
+.share-logo{
+
+    font-size:28px;
+
+    letter-spacing:7px;
+
+    color:#B18A52;
+
+}
+
+
+
+/* ==========================
+Upload Button
+========================== */
+
+
+.upload-bg{
+
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    padding:
+
+    10px 22px;
+
+
+    border-radius:999px;
+
+
+    background:
+
+    rgba(255,255,255,.06);
+
+
+    color:#D8CCB8;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+.upload-bg:hover{
+
+
+    background:
+
+    rgba(255,255,255,.15);
+
+
+}
+
+
+
+.upload-bg input{
+
+
+    display:none;
+
+
+}
+
+
+
+/* ==========================
+Bottom buttons
+========================== */
+
+
+.save-btn,
+.back-btn{
+
+
+    width:260px;
+
+    height:56px;
+
+    border-radius:999px;
+
+    margin-top:28px;
+
+    font-family:inherit;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+
+
+/* 保存 */
+
+.save-btn{
+
+
+    background:#D7B27A;
+
+    color:#2B211D;
+
+    border:none;
+
+
+}
+
+
+
+/* 返回 */
+
+.back-btn{
+
+
+    background:transparent;
+
+    color:#D7C8B2;
+
+    border:
+
+    1px solid rgba(215,200,178,.35);
+
+
+}
+
+
+
+/* ==========================
+Mobile spacing
+========================== */
+
+
+.container{
+
+    padding-top:30px;
+
+    padding-bottom:40px;
+
+    justify-content:flex-start;
+
+}
+
+
+.editor{
+
+    flex-shrink:0;
+
+}
+
+
+.preview{
+
+    margin-top:10px;
+
+    margin-bottom:20px;
+
+}/* ==========================
+上传图片按钮
+========================== */
+
+
+.upload-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.upload-btn input{
+
+    display:none;
+
+}/* ==========================
+自动字体颜色
+========================== */
+
+
+.preview.light-bg 
+.share-answer,
+.preview.light-bg 
+.share-meaning,
+.preview.light-bg 
+.share-date,
+.preview.light-bg 
+.share-logo{
+
+
+color:#33271F;
+
+
+text-shadow:none;
+
+
+}
+
+
+
+.preview.dark-bg 
+.share-answer,
+.preview.dark-bg 
+.share-meaning,
+.preview.dark-bg 
+.share-date,
+.preview.dark-bg 
+.share-logo{
+
+
+color:white;
+
+
+text-shadow:
+
+0 3px 15px rgba(0,0,0,.65);
+
+
+}/* 图片模式保护层 */
+
+
+.preview.photo-mode::before{
+
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+
+background:
+
+linear-gradient(
+
+180deg,
+
+rgba(0,0,0,.35),
+
+rgba(0,0,0,.45)
+
+);
+
+
+z-index:1;
+
+
+}
+
+
+
+
+.preview.photo-mode > *{
+
+
+position:relative;
+
+z-index:2;
+
+
+}
+
+
+
+
+.preview.photo-mode .share-answer,
+.preview.photo-mode .share-meaning,
+.preview.photo-mode .share-date,
+.preview.photo-mode .share-logo{
+
+
+color:#fff;
+
+
+text-shadow:
+
+0 3px 18px rgba(0,0,0,.8);
+
+
+}/* ==========================
+上传图片保护
+========================== */
+
+
+.preview.photo-mode::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+
+background:
+
+rgba(0,0,0,.38);
+
+
+z-index:1;
+
+}
+
+
+
+.preview.photo-mode > *{
+
+position:relative;
+
+z-index:2;
+
+}
+
+
+
+.preview.photo-mode .share-answer,
+.preview.photo-mode .share-meaning,
+.preview.photo-mode .share-date,
+.preview.photo-mode .share-logo{
+
+
+color:#fff;
+
+
+text-shadow:
+
+0 3px 16px rgba(0,0,0,.9);
+
+
+}/* ==========================================
+   COLOR THEME BUTTONS
+========================================== */
+
+
+.color-list{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+
+.color-item{
+
+
+    border:none;
+
+    padding:
+
+    10px 18px;
+
+
+    border-radius:999px;
+
+
+    background:
+
+    rgba(255,255,255,.06);
+
+
+    color:#D8CCB8;
+
+
+    cursor:pointer;
+
+
+    font-family:inherit;
+
+
+    font-size:15px;
+
+
+    transition:.3s ease;
+
+
+}
+
+
+
+/* 鼠标经过 */
+
+.color-item:hover{
+
+
+    background:
+
+    rgba(255,255,255,.15);
+
+
+}
+
+
+
+/* 当前选择 */
+
+
+.color-item.active{
+
+
+    background:#D7B27A;
+
+
+    color:#2B211D;
+
+
+    box-shadow:
+
+    0 6px 18px rgba(0,0,0,.25);
+
+
+}

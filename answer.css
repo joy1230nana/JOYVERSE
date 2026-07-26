@@ -1,0 +1,267 @@
+/* ==========================================
+   JOYVERSE
+   ANSWER
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+}
+
+body{
+
+    background:
+    radial-gradient(circle at top,#2b211d,#171412);
+
+    color:#F4E9D8;
+
+    font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+/* ==========================
+Container
+========================== */
+
+.container{
+
+    width:100%;
+
+    max-width:393px;
+
+    height:100dvh;
+
+    padding:48px 30px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-evenly;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+/* ==========================
+Date
+========================== */
+
+.date{
+
+    opacity:.72;
+
+}
+
+.month{
+
+    font-size:17px;
+
+    letter-spacing:1px;
+
+}
+
+.weekday{
+
+    margin-top:6px;
+
+    font-size:14px;
+
+    color:#CDBFA9;
+
+}
+
+/* ==========================
+Line
+========================== */
+
+.line{
+
+    width:180px;
+
+    height:1px;
+
+    background:#8D724C;
+
+    opacity:.55;
+
+}/* ==========================
+Answer
+========================== */
+
+.answer{
+
+    font-size:36px;
+
+    line-height:1.45;
+
+    color:#FFF7EB;
+
+    letter-spacing:.5px;
+
+    font-weight:normal;
+
+}
+
+/* ==========================
+Meaning
+========================== */
+
+.meaning{
+
+    width:90%;
+
+    font-size:18px;
+
+    line-height:1.9;
+
+    color:#D6C8B3;
+
+}/* ==========================================
+   BUTTONS
+========================================== */
+
+.share-btn,
+.again-btn{
+
+    width:240px;
+
+    height:52px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-size:18px;
+
+    transition:.35s ease;
+
+}
+
+/* ==========================
+Share
+========================== */
+
+.share-btn{
+
+    background:#D7B27A;
+
+    color:#2B211D;
+
+    font-weight:600;
+
+    box-shadow:
+
+    0 8px 20px rgba(0,0,0,.18);
+
+}
+
+.share-btn:hover{
+
+    transform:translateY(-2px);
+
+    background:#E2BE89;
+
+    box-shadow:
+
+    0 14px 28px rgba(0,0,0,.22);
+
+}
+
+.share-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================
+Again
+========================== */
+
+.again-btn{
+
+    margin-top:14px;
+
+    background:transparent;
+
+    color:#D7C8B2;
+
+    border:1px solid rgba(215,200,178,.35);
+
+}
+
+.again-btn:hover{
+
+    background:rgba(255,255,255,.05);
+
+    border-color:#D7B27A;
+
+    color:#F4E8D8;
+
+}
+
+.again-btn:active{
+
+    transform:scale(.98);
+
+}/* ==========================================
+   PAGE ANIMATION
+========================================== */
+
+.container{
+
+    animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+0%{
+
+opacity:0;
+
+transform:
+
+translateY(20px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:
+
+translateY(0);
+
+}
+
+}
