@@ -19,7 +19,11 @@ body{
 
 body{
 
-    overflow:hidden;
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    overflow-y:auto;
 
     background:
     radial-gradient(circle at top,#2b211d 0%,#171412 100%);
@@ -27,18 +31,15 @@ body{
     color:#F4E8D7;
 
     font-family:
-
     Georgia,
-
     "Times New Roman",
-
     serif;
 
     display:flex;
 
     justify-content:center;
 
-    align-items:center;
+    align-items:flex-start;
 
 }
 
@@ -106,7 +107,7 @@ min-height:100vh;
 
 padding:
 
-40px 28px 30px;
+30px 28px 50px;
 
 display:flex;
 
@@ -129,7 +130,9 @@ Logo
 
 .logo{
 
-font-size:48px;
+font-size:46px;
+
+margin-top:10px;
 
 letter-spacing:5px;
 
