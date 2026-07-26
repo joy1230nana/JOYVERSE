@@ -102,13 +102,11 @@ width:100%;
 
 max-width:393px;
 
-height:852px;
+min-height:100vh;
 
 padding:
 
-54px
-28px
-46px;
+40px 28px 30px;
 
 display:flex;
 
@@ -116,7 +114,7 @@ flex-direction:column;
 
 align-items:center;
 
-justify-content:center;
+justify-content:flex-start;
 
 text-align:center;
 
@@ -125,22 +123,19 @@ position:relative;
 z-index:2;
 
 }
-
 /* ==========================
 Logo
 ========================== */
 
 .logo{
 
-font-size:54px;
+font-size:48px;
 
-font-weight:normal;
-
-letter-spacing:6px;
+letter-spacing:5px;
 
 line-height:1;
 
-margin-bottom:16px;
+margin-bottom:20px;
 
 }
 
