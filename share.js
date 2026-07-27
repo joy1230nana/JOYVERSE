@@ -534,23 +534,42 @@ const saveBtn =
 document.querySelector(".save-btn");
 
 
-
 saveBtn.addEventListener("click",()=>{
 
 
+const poster =
+document.getElementById("poster");
+
+
+// 临时取消圆角
+poster.style.borderRadius="0px";
+
+
 html2canvas(
-document.getElementById("poster"),
+poster,
 {
 
 scale:3,
 
 useCORS:true,
 
-backgroundColor:"#F5EBDD"
+backgroundColor:"#F5EBDD",
+
+
+
+scrollX:0,
+
+scrollY:0
 
 }
 
 ).then(canvas=>{
+
+
+// 恢复网页预览圆角
+
+poster.style.borderRadius="40px";
+
 
 
 canvas.toBlob(async(blob)=>{
@@ -573,17 +592,13 @@ type:"image/png"
 
 
 
+// 手机保存/分享
 
 if(
-
 navigator.canShare &&
-
 navigator.canShare({
-
 files:[file]
-
 })
-
 ){
 
 
@@ -599,6 +614,7 @@ title:"JOYVERSE"
 }
 
 
+// 电脑下载
 
 else{
 
@@ -607,11 +623,10 @@ const link =
 document.createElement("a");
 
 
-link.download =
-"JOYVERSE.png";
+link.download="JOYVERSE.png";
 
 
-link.href =
+link.href=
 URL.createObjectURL(blob);
 
 
@@ -619,7 +634,6 @@ link.click();
 
 
 }
-
 
 
 });
