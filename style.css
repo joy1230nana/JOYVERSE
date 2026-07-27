@@ -39,8 +39,7 @@ body{
 
     justify-content:center;
 
-    align-items:flex-start;
-
+   align-items:center;
 }
 
 /* ==========================
@@ -574,7 +573,7 @@ Poster
 
 
 .preview{
-
+box-sizing:border-box;
     width:100%;
 
     max-width:330px;
@@ -653,7 +652,7 @@ Photo mode
     text-shadow:
 
     0 3px 12px rgba(0,0,0,.55);
-
+z-index:1;
 }
 
 
