@@ -541,29 +541,22 @@ const poster =
 document.getElementById("poster");
 
 
-// 保存原状态
-const oldRadius =
-poster.style.borderRadius;
-
-const oldPadding =
-poster.style.padding;
-
-
-// 临时变成纯图片画布
+// 临时取消圆角
 poster.style.borderRadius="0px";
 
-poster.style.padding="0px";
-
-
+poster.style.height="650px";
+poster.style.width="330px";
 html2canvas(
 poster,
 {
 
-scale:3,
+scale:window.devicePixelRatio || 3,
 
 useCORS:true,
 
-backgroundColor:null,
+backgroundColor:"#F5EBDD",
+
+
 
 scrollX:0,
 
@@ -574,11 +567,9 @@ scrollY:0
 ).then(canvas=>{
 
 
-// 恢复网页状态
+// 恢复网页预览圆角
 
-poster.style.borderRadius=oldRadius;
-
-poster.style.padding=oldPadding;
+poster.style.borderRadius="40px";
 
 
 
@@ -593,13 +584,16 @@ new File(
 "JOYVERSE.png",
 
 {
+
 type:"image/png"
+
 }
 
 );
 
 
 
+// 手机保存/分享
 
 if(
 navigator.canShare &&
@@ -618,7 +612,12 @@ title:"JOYVERSE"
 });
 
 
-}else{
+}
+
+
+// 电脑下载
+
+else{
 
 
 const link =
@@ -628,7 +627,7 @@ document.createElement("a");
 link.download="JOYVERSE.png";
 
 
-link.href =
+link.href=
 URL.createObjectURL(blob);
 
 
@@ -636,7 +635,6 @@ link.click();
 
 
 }
-
 
 
 });
