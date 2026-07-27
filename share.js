@@ -546,7 +546,7 @@ scale:3,
 
 useCORS:true,
 
-backgroundColor:null
+backgroundColor:"#F5EBDD"
 
 }
 
