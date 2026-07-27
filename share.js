@@ -544,12 +544,13 @@ document.getElementById("poster");
 // 临时取消圆角
 poster.style.borderRadius="0px";
 
-
+poster.style.height="650px";
+poster.style.width="330px";
 html2canvas(
 poster,
 {
 
-scale:3,
+scale:window.devicePixelRatio || 3,
 
 useCORS:true,
 
