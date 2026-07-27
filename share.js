@@ -1,16 +1,58 @@
-const backBtn = document.querySelector(".back-btn");
+// =========================
+// JOYVERSE SHARE JS
+// =========================
 
-const preview = document.querySelector("#poster");
 
-const bgItems = document.querySelectorAll(".bg-item");
+// 元素
 
-const langItems = document.querySelectorAll(".lang-item");
+const backBtn =
+document.querySelector(".back-btn");
 
-const answer = document.querySelector(".share-answer");
+const preview =
+document.querySelector("#poster");
 
-const meaning = document.querySelector(".share-meaning");
+const bgItems =
+document.querySelectorAll(".bg-item");
 
-const date = document.querySelector(".share-date");
+const langItems =
+document.querySelectorAll(".lang-item");
+
+const answer =
+document.querySelector(".share-answer");
+
+const meaning =
+document.querySelector(".share-meaning");
+
+const date =
+document.querySelector(".share-date");
+
+
+// =========================
+// 读取答案
+// =========================
+
+const savedAnswer =
+JSON.parse(localStorage.getItem("joyverseAnswer"));
+
+
+// =========================
+// 默认显示中文答案
+// =========================
+
+if(savedAnswer){
+
+    answer.innerHTML =
+    savedAnswer.answer;
+
+
+    meaning.innerHTML =
+    savedAnswer.meaning;
+
+
+    date.innerHTML =
+    "2026 年 7 月 27 日";
+
+}
 
 
 // =========================
@@ -23,23 +65,22 @@ backBtn.addEventListener("click",()=>{
 
     document.body.style.opacity="0";
 
+
     setTimeout(()=>{
 
         window.location.href="answer.html";
 
     },400);
 
-});
-
-
-
-// =========================
-// 默认羊皮纸
+});// =========================
+// 默认羊皮纸背景
 // =========================
 
-preview.style.background="#F7F1E3";
+preview.style.background =
+"#F7F1E3";
 
-preview.style.color="#3B3129";
+preview.style.color =
+"#3B3129";
 
 
 
@@ -63,16 +104,17 @@ bgItems.forEach(item=>{
         item.classList.add("active");
 
 
-        preview.style.backgroundImage="none";
+        preview.style.backgroundImage =
+        "none";
 
 
-        preview.style.background="#F7F1E3";
+        preview.style.background =
+        "#F7F1E3";
 
 
-        preview.style.color="#3B3129";
-
-
-        preview.classList.remove("photo-mode");
+        preview.classList.remove(
+        "photo-mode"
+        );
 
 
     });
@@ -81,18 +123,23 @@ bgItems.forEach(item=>{
 });
 
 
+
 // =========================
-// 上传自己的图片
+// 上传图片
 // =========================
+
 
 const upload =
 document.querySelector("#bg-upload");
+
 
 const uploadBtn =
 document.querySelector(".upload-btn");
 
 
-// 点击按钮打开相册
+
+if(uploadBtn){
+
 
 uploadBtn.addEventListener("click",()=>{
 
@@ -101,56 +148,61 @@ uploadBtn.addEventListener("click",()=>{
 });
 
 
+}
 
-// 选择图片
+
+
+if(upload){
+
 
 upload.addEventListener("change",(e)=>{
 
 
-const file=e.target.files[0];
+    const file =
+    e.target.files[0];
 
 
-if(!file)return;
-
-
-
-const reader=new FileReader();
+    if(!file)return;
 
 
 
-reader.onload=function(){
-
-
-preview.style.backgroundImage=
-`url(${reader.result})`;
-
-
-preview.style.backgroundSize=
-"cover";
-
-
-preview.style.backgroundPosition=
-"center";
+    const reader =
+    new FileReader();
 
 
 
-preview.classList.add("photo-mode");
+    reader.onload=()=>{
+
+
+        preview.style.backgroundImage =
+        `url(${reader.result})`;
+
+
+        preview.style.backgroundSize =
+        "cover";
+
+
+        preview.style.backgroundPosition =
+        "center";
+
+
+        preview.classList.add(
+        "photo-mode"
+        );
+
+
+    };
 
 
 
-};
-
-
-reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
 
 
 
 });
 
 
-
-
-
+}
 
 
 
@@ -164,100 +216,131 @@ langItems.forEach(item=>{
 item.addEventListener("click",()=>{
 
 
-langItems.forEach(btn=>{
+    langItems.forEach(btn=>{
 
-btn.classList.remove("active");
+        btn.classList.remove("active");
+
+    });
+
+
+    item.classList.add("active");
+
+
+
+    const lang =
+    item.innerText.trim();
+
+
+
+    if(!savedAnswer)return;
+
+
+
+    const t =
+    translations[savedAnswer.answer];
+
+
+
+    if(lang==="中文"){
+
+
+        answer.innerHTML =
+        savedAnswer.answer;
+
+
+        meaning.innerHTML =
+        savedAnswer.meaning;
+
+
+        date.innerHTML =
+        "2026 年 7 月 27 日";
+
+
+    }
+
+
+
+
+    if(lang==="English"){
+
+
+        if(t){
+
+
+            answer.innerHTML =
+            t.answer.en;
+
+
+            meaning.innerHTML =
+            t.meaning.en;
+
+
+        }
+
+
+        date.innerHTML =
+        "July 27, 2026";
+
+
+    }// 继续语言切换
+    if(lang==="日本語"){
+
+
+        if(t){
+
+
+            answer.innerHTML =
+            t.answer.ja;
+
+
+            meaning.innerHTML =
+            t.meaning.ja;
+
+
+        }
+
+
+        date.innerHTML =
+        "2026年7月27日";
+
+
+    }
+
+
+
+
+    if(lang==="한국어"){
+
+
+        if(t){
+
+
+            answer.innerHTML =
+            t.answer.ko;
+
+
+            meaning.innerHTML =
+            t.meaning.ko;
+
+
+        }
+
+
+        date.innerHTML =
+        "2026년 7월 27일";
+
+
+    }
+
+
 
 });
 
 
-item.classList.add("active");
-
-
-
-const lang=item.innerText;
-
-
-
-if(lang==="中文"){
-
-
-answer.innerHTML=
-"每一朵花，<br>都有属于自己的季节。";
-
-
-meaning.innerHTML=
-"等待，<br>也是成长的一部分。";
-
-
-date.innerHTML=
-"2026 年 7 月 27 日";
-
-
-}
-
-
-
-if(lang==="English"){
-
-
-answer.innerHTML=
-"Every flower blooms<br>in its own season.";
-
-
-meaning.innerHTML=
-"Waiting is also<br>part of growth.";
-
-
-date.innerHTML=
-"July 27, 2026";
-
-
-}
-
-
-
-if(lang==="日本語"){
-
-
-answer.innerHTML=
-"花には、<br>それぞれの季節がある。";
-
-
-meaning.innerHTML=
-"待つことも、<br>成長の一部。";
-
-
-date.innerHTML=
-"2026年7月27日";
-
-
-}
-
-
-
-if(lang==="한국어"){
-
-
-answer.innerHTML=
-"모든 꽃은<br>자신의 계절에 핀다.";
-
-
-meaning.innerHTML=
-"기다림 또한<br>성장의 일부입니다.";
-
-
-date.innerHTML=
-"2026년 7월 27일";
-
-
-}
-
-
 });
 
 
-});
+
 
 // =========================
 // 文字主题颜色
@@ -387,52 +470,58 @@ colorItems.forEach(item=>{
 item.addEventListener("click",()=>{
 
 
-//按钮状态
+    colorItems.forEach(btn=>{
 
-colorItems.forEach(btn=>{
+        btn.classList.remove("active");
 
-btn.classList.remove("active");
+    });
+
+
+    item.classList.add("active");
+
+
+
+    const theme =
+    colorThemes[item.dataset.color];
+
+
+
+    if(!theme)return;
+
+
+
+    date.style.color =
+    theme.date;
+
+
+    answer.style.color =
+    theme.answer;
+
+
+    meaning.style.color =
+    theme.meaning;
+
+
+
+    const logo =
+    document.querySelector(".share-logo");
+
+
+
+    if(logo){
+
+        logo.style.color =
+        theme.logo;
+
+    }
+
+
 
 });
 
 
-item.classList.add("active");
-
-
-
-// 获取颜色主题
-
-const theme = 
-colorThemes[item.dataset.color];
-
-
-
-// 修改文字颜色
-
-
-date.style.color =
-theme.date;
-
-
-answer.style.color =
-theme.answer;
-
-
-meaning.style.color =
-theme.meaning;
-
-
-
-document.querySelector(".share-logo")
-.style.color =
-theme.logo;
-
-
-
 });
 
-
-});
 
 
 
@@ -440,81 +529,97 @@ theme.logo;
 // 保存图片
 // =========================
 
+
 const saveBtn =
 document.querySelector(".save-btn");
+
 
 
 saveBtn.addEventListener("click",()=>{
 
 
-html2canvas(document.getElementById("poster"),{
+html2canvas(
+document.getElementById("poster"),
+{
 
-    scale:3,
+scale:3,
 
-    useCORS:true,
+useCORS:true,
 
-    backgroundColor:null
+backgroundColor:null
 
-}).then(canvas=>{
+}
+
+).then(canvas=>{
 
 
 canvas.toBlob(async(blob)=>{
 
 
-    const file = new File(
+const file =
+new File(
 
-        [blob],
+[blob],
 
-        "JOYVERSE.png",
+"JOYVERSE.png",
 
-        {
-            type:"image/png"
-        }
+{
 
-    );
+type:"image/png"
 
+}
 
-    // 手机直接调用系统保存
-
-    if(
-        navigator.canShare &&
-        navigator.canShare({
-            files:[file]
-        })
-    ){
+);
 
 
-        await navigator.share({
-
-            files:[file],
-
-            title:"JOYVERSE"
-
-        });
 
 
-    }
+if(
+
+navigator.canShare &&
+
+navigator.canShare({
+
+files:[file]
+
+})
+
+){
 
 
-    // 电脑备用下载
+await navigator.share({
 
-    else{
+files:[file],
 
+title:"JOYVERSE"
 
-        const link=document.createElement("a");
-
-
-        link.download="JOYVERSE.png";
+});
 
 
-        link.href=
-        URL.createObjectURL(blob);
+}
 
 
-        link.click();
+
+else{
 
 
-    }
+const link =
+document.createElement("a");
+
+
+link.download =
+"JOYVERSE.png";
+
+
+link.href =
+URL.createObjectURL(blob);
+
+
+link.click();
+
+
+}
+
 
 
 });
